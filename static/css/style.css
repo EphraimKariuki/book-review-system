@@ -1,0 +1,42 @@
+nav, footer {
+  background-color: #000066;
+  color: #9ecfd3; }
+
+body {
+  background-image: url("../images/booksLibrary.jpeg"); }
+
+nav {
+  margin-bottom: 100px; }
+
+.container {
+  font-family: sans-serif, arial; }
+
+.card-header {
+  text-align: center; }
+
+#signinCard {
+  margin-left: 300px;
+  margin-bottom: 400px;
+  width: 25rem; }
+
+#signupCard {
+  margin-left: 300px;
+  margin-bottom: 200px;
+  width: 25rem; }
+
+#goodreadsCard {
+  margin-bottom: 500px; }
+
+#errorCard {
+  margin-bottom: 500px; }
+
+#successCard {
+  margin-bottom: 500px; }
+
+#choices {
+  margin-bottom: 500px; }
+
+#footerLogo {
+  margin: 200px; }
+
+/*# sourceMappingURL=style.css.map */

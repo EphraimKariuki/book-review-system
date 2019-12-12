@@ -1,0 +1,60 @@
+$bgcolor: #000066;
+$fontColor: #9ecfd3;
+
+%theme {
+  background-color: $bgcolor;
+  color: $fontColor;
+}
+body {
+  background-image: url("../images/booksLibrary.jpeg");
+
+}
+
+
+nav {
+  @extend %theme;
+  margin-bottom: 100px;
+}
+footer {
+  @extend %theme;
+
+}
+
+.container {
+  font-family: sans-serif, arial;
+}
+
+.card-header {
+  text-align: center;
+}
+
+
+#signinCard {
+  margin-left: 300px;
+  margin-bottom: 400px;
+  width: 25rem;
+}
+
+#signupCard  {
+  margin-left: 300px;
+  margin-bottom: 200px;
+  width: 25rem;
+}
+
+#goodreadsCard {
+  margin-bottom: 500px;
+}
+
+#errorCard {
+  margin-bottom: 500px;
+}
+#successCard {
+  margin-bottom: 500px;
+}
+
+#choices {
+    margin-bottom: 500px; }
+
+#footerLogo {
+  margin: 200px;
+}

@@ -1,0 +1,18 @@
+{% extends "layout.html"%}
+
+{% block body%}
+<div class="card" id="successCard" style="width: 25rem;">
+  <div class="card-header">
+    <h3>Congratulations!</h3>
+  </div>
+  <div class="card-body">
+    <h4>{{first}}, you have successfuly Signed Up. <br> Thank you for joining us!</h4>
+  </div>
+  <div class="card-footer">
+    <button class="btn btn-primary" type="button" name="button" >  <a href="{{url_for('signin')}}">Sign Up</a> /button>
+
+  </div>
+
+
+</div>
+{%endblock%}

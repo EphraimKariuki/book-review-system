@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block nav %}
+<button  class="btn btn-primary" id="btn-signIn"> Sign In</button>
+{% endblock %}
+
+{% block body%}
+
+<div class="card "  id="signinCard" >
+  <div class="card-body" >
+    <form action="{{ url_for('signup')}}" method="post">
+      <div class="form-group">
+        <label for="First Name">First Name</label>
+        <input type="text" class="form-control" id="firstName" name="first" placeholder="First name.">
+      </div>
+      <div class="form-group">
+        <label for="secondName">Second Name</label>
+        <input type="text" class="form-control" id="secondName" name="second" placeholder="Second name.">
+      </div>
+       <div class="form-group"  >
+         <label for="email">Email address</label>
+         <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" name="email">
+         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+       </div>
+       <div class="form-group">
+         <label for="password">Password</label>
+         <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+       </div>
+       <small id="emailHelp" class="form-text"> Already have an account?<a href="{{url_for('signin')}}">Click here.</a> </small>
+       <button type="submit" class="btn btn-primary" id="btn-signIn">Sign Up</button>
+    </form>
+  </div>
+</div>
+
+
+{% endblock %}

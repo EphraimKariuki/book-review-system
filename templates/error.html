@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="card" id="errorCard">
+  <div class="card-header">
+   <h3>ERROR!</h3>
+  </div>
+  <div class="card-body">
+    <h3>{{message}}</h3>
+  </div>
+  <div class="card-footer">
+    <a href="{{errorlink}}">GO Back</a>
+
+  </div>
+</div>
+
+
+{% endblock%}

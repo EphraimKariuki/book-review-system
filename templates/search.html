@@ -1,0 +1,37 @@
+{%extends "layout.html"%}
+
+{%block nav%}
+<button class="btn btn-primary" id="btn-signIn">Logout</button>
+
+{%endblock%}
+
+{%block body%}
+<!-- Search section -->
+<div class="search">
+  <h1>Search for a the book you want to rate.</h1>
+  <form class="" action="" method="post">
+      <input type="text" name="searchContent" class="form-control " value="" placeholder="Enter the title, ISBN number or the name of the author...">
+      <button type="submit" name="button" class="btn btn-primary">Search</button>
+  </form>
+</div>
+
+<hr>
+
+<!-- Results section. -->
+<div class="choices" id="choices">
+  <h3>Select your book of choice from this drop down menu</h3>
+
+  <form class="" action="{{url_for('books')}}" method="post">
+    <select class="form-control" name="book">
+      <!-- Set value as book_id -->
+     {% for book in books%}
+        <option value="{{book.id}}">{{book.title}} by {{book.author}} published in {{book.year}}</option>
+      {% endfor %}
+    </select>
+    <button type="submit" name="button"  class="btn btn-primary" >Rate This Book</button>
+  </form>
+</div>
+
+
+
+{%endblock%}
