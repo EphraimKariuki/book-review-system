@@ -66,19 +66,9 @@ def signin():
 
 
 
-@app.route("/search/<int: user_id>")
-def search(user_id):
-    session["user_id"]=user_id
-    #Get the user's loggin details.
-    email = request.form.get("email")
-    password = request.form.get("password")
+@app.route("/search", methods=["POST"])
+def search():
 
-
-    #Query the database for the user.
-    user = db.execute("SELECT * FROM users WHERE (password = :password) AND (email = :email)", {"email": email, "password": password})
-
-
-    # session["user_id"] = user.id
     #Get the user's search query.
     searchQuery = request.form.get('searchContent')
 
@@ -89,7 +79,7 @@ def search(user_id):
 @app.route("/books", methods=["GET", "POST"])
 def books():
 
-    # Display the selected book's detail.
+    # Display the selected book's detail
     book_id = int(request.form.get('book'))
     book = db.execute("SELECT * FROM books WHERE (id = :id)", {"id": book_id}).fetchone()
     if book is None:
@@ -102,16 +92,18 @@ def error():
 
 @app.route("/review")
 def review():
-    user_id = session["user_id"]
-    rating = request.form.get('rating')
+    user_id = 7
+    book_id = 2
+    rating = 1
     apirate = 4
-    opinion = request.form.get('comment')
+    opinion = "The book is great."
 
     db.execute("INSERT INTO reviews (user_id, book_id, rating, apirate, opinion) VALUES(:user_id, :book_id, :rating, :apirate, :opinion)", {"user_id": user_id, "book_id": book_id, "rating": rating, "apirate": apirate, "opinion": opinion})
 
 
     message = "You have successfully made your review!"
-    return render_template("success.html", message=message)
+    return goodreads()
+    # return render_template("success.html", message=message)
 
 
 @app.route("/success")
