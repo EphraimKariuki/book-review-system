@@ -1,7 +1,9 @@
 import os
 import csv
+import requests
 
-from flask import Flask, session, render_template, request,session
+
+from flask import Flask, session, render_template, request,session, redirect, url_for
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -61,18 +63,30 @@ def signup():
 
 @app.route("/signin", methods=["GET", "POST"])
 def signin():
+    return render_template('signin.html')
 
-    return render_template("signin.html")
+@app.route("/login")
+def login():
+    email = request.form.get("email")
+    password = request.form.get("password")
+    if db.execute("SELECT * FROM users WHERE (secondname= :secondname) and (password= :password)", {"secondname":email , "password": password}).rowcount == 0:
+        return redirect('search')
+    else:
+        return render_template("signin.html")
 
 
 
-@app.route("/search", methods=["POST"])
+
+
+@app.route("/search", methods=["GET","POST"])
 def search():
 
     #Get the user's search query.
-    searchQuery = request.form.get('searchContent')
+    searchQuery = str(request.form.get('searchContent'))
+    searchQuery = searchQuery.title()
 
-    books = db.execute("SELECT * FROM books WHERE (title= :title) or (author= :author) or (isbn= :isbn)", {"title": searchQuery, "author": searchQuery, "isbn": searchQuery}).fetchall()
+
+    books = db.execute("SELECT * FROM books WHERE (title LIKE :title) or (author LIKE :author) or (isbn= :isbn)", {"title": "%"+searchQuery+"%", "author": "%"+searchQuery+"%", "isbn": searchQuery}).fetchall()
     return render_template("search.html", books=books)
 
 
@@ -90,19 +104,21 @@ def books():
 def error():
     return render_template("error.html")
 
-@app.route("/review")
-def review():
+@app.route("/books/<int:book_id>")
+def review(book_id):
+
+    # Get review from goodreads API.
+    # res =  requests.get("https://www.goodreads.com/book/review_counts.json", params={"key":"t052dnowfmqDZ9TdbWqZQ", "isbn": })
     user_id = 7
-    book_id = 2
     rating = 1
     apirate = 4
     opinion = "The book is great."
 
     db.execute("INSERT INTO reviews (user_id, book_id, rating, apirate, opinion) VALUES(:user_id, :book_id, :rating, :apirate, :opinion)", {"user_id": user_id, "book_id": book_id, "rating": rating, "apirate": apirate, "opinion": opinion})
-
+    db.commit()
 
     message = "You have successfully made your review!"
-    return goodreads()
+    return redirect(url_for('goodreads', ))
     # return render_template("success.html", message=message)
 
 
@@ -113,7 +129,9 @@ def success():
 @app.route("/goodreads")
 def goodreads():
 
-    return render_template("goodreads.html")
+    res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "t052dnowfmqDZ9TdbWqZQ", "isbns": isbn})
+    data = res.json()
+    return render_template("goodreads.html",  )
 
 
 
