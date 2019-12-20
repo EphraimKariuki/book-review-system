@@ -8,7 +8,7 @@
 {%block body%}
 <!-- Search section -->
 <div class="search">
-  <h1>Search for a the book you want to rate.</h1>
+  <h1 id="h1-search">Search for a the book you want to rate.</h1>
   <form class="" action="" method="post">
       <input type="text" name="searchContent" class="form-control " value="" placeholder="Enter the title, ISBN number or the name of the author...">
       <button type="submit" name="button" class="btn btn-primary">Search</button>
@@ -19,7 +19,7 @@
 
 <!-- Results section. -->
 <div class="choices" id="choices">
-  <h3>Select your book of choice from this drop down menu</h3>
+  <h3 id="h3-search">Select your book of choice from this drop down menu</h3>
 
   <form class="" action="{{url_for('books')}}" method="post">
     <select class="form-control" name="book">

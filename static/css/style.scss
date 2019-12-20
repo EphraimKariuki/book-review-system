@@ -9,7 +9,10 @@ body {
   background-image: url("../images/booksLibrary.jpeg");
 
 }
-
+%text {
+  color: white;
+  font-family: sans-serif, arial;
+}
 
 nav {
   @extend %theme;
@@ -57,4 +60,11 @@ footer {
 
 #footerLogo {
   margin: 200px;
+}
+
+#h1-search {
+  @extend %text;
+}
+#h3-search {
+  @extend %text;
 }

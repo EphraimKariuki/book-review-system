@@ -42,16 +42,16 @@
        <h3>Review the above book below</h3>
       <!-- Rating on a scale of 1 to 5. -->
    <form class="" action="{{url_for('review', book_id=book.id)}}">
-     <div class="form-control">
+     <div class="form-group">
        <label for="bookId">Book Id:</label>
        <input class="form-control" name="book_id" value="{{book.id}}">
      </div>
-      <div class="form-control">
-        <input class="form-control" type="radio" name="rating" value="1"> 1 point
-        <input class="form-control" type="radio" name="rating" value="2"> 2 points
-        <input class="form-control" type="radio" name="rating" value="3"> 3 points
-        <input class="form-control" type="radio" name="rating" value="4"> 4 points
-        <input class="form-control" type="radio" name="rating" value="5"> 5 points
+      <div class="form-group">
+        <input  type="radio" name="rating" value="1"> 1 point
+        <input  type="radio" name="rating" value="2"> 2 points
+        <input  type="radio" name="rating" value="3"> 3 points
+        <input  type="radio" name="rating" value="4"> 4 points
+        <input type="radio" name="rating" value="5"> 5 points
       </div>
 
       <!-- Writen Comment of the user -->

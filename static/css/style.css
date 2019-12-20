@@ -5,6 +5,10 @@ nav, footer {
 body {
   background-image: url("../images/booksLibrary.jpeg"); }
 
+#h1-search, #h3-search {
+  color: white;
+  font-family: sans-serif, arial; }
+
 nav {
   margin-bottom: 100px; }
 
