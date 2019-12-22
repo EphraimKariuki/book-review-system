@@ -104,21 +104,21 @@ def books():
 def error():
     return render_template("error.html")
 
-@app.route("/books/<int:book_id>")
+@app.route("/books/<int:book_id>", methods=["GET", "POST"])
 def review(book_id):
 
     # Get review from goodreads API.
     # res =  requests.get("https://www.goodreads.com/book/review_counts.json", params={"key":"t052dnowfmqDZ9TdbWqZQ", "isbn": })
     user_id = 7
-    rating = 1
+    rating = int(request.form.get('rating'))
     apirate = 4
-    opinion = "The book is great."
+    opinion = request.form.get('comment')
 
     db.execute("INSERT INTO reviews (user_id, book_id, rating, apirate, opinion) VALUES(:user_id, :book_id, :rating, :apirate, :opinion)", {"user_id": user_id, "book_id": book_id, "rating": rating, "apirate": apirate, "opinion": opinion})
     db.commit()
 
     message = "You have successfully made your review!"
-    return redirect(url_for('goodreads', ))
+    return redirect(url_for('goodreads'))
     # return render_template("success.html", message=message)
 
 
@@ -129,8 +129,8 @@ def success():
 @app.route("/goodreads")
 def goodreads():
 
-    res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "t052dnowfmqDZ9TdbWqZQ", "isbns": isbn})
-    data = res.json()
+    # res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "t052dnowfmqDZ9TdbWqZQ", "isbns": isbn})
+    # data = res.json()
     return render_template("goodreads.html",  )
 
 

@@ -32,37 +32,35 @@
         <output name="usersReview"></output>
       </div>
       <hr>
-      <div class="">
+      <!-- <div class="">
         <label for="bookId">Book Id:</label>
         <output name="bookId">{{book.id}}</output>
-      </div>
+      </div> -->
       <hr>
 
       <!-- Book rating section -->
        <h3>Review the above book below</h3>
       <!-- Rating on a scale of 1 to 5. -->
-   <form class="" action="{{url_for('review', book_id=book.id)}}">
-     <div class="form-group">
+   <form class="form-group" action="{{url_for('review', book_id=book.id)}}" method="post">
+     <!-- <div class="form-group">
        <label for="bookId">Book Id:</label>
        <input class="form-control" name="book_id" value="{{book.id}}">
-     </div>
-      <div class="form-group">
-        <input  type="radio" name="rating" value="1"> 1 point
-        <input  type="radio" name="rating" value="2"> 2 points
-        <input  type="radio" name="rating" value="3"> 3 points
-        <input  type="radio" name="rating" value="4"> 4 points
-        <input type="radio" name="rating" value="5"> 5 points
+     </div> -->
+      <div class="form-check-inline">
+        <input  class="form-check-input form-control" type="radio" name="rating" value="1" > 1 point
+        <input  class="form-check-input form-contol" type="radio" name="rating" value="2"> 2 points
+        <input  class="form-check-input form-control" type="radio" name="rating" value="3"> 3 points
+        <input  class="form-check-input form-control" type="radio" name="rating" value="4"> 4 points
+        <input class="form-check-input  form-control"  type="radio" name="rating" value="5"> 5 points
       </div>
 
       <!-- Writen Comment of the user -->
 
       <textarea class="form-control" name="comment" rows="8" cols="100" placeholder="Write a brief comment about the book."></textarea>
 
-
       <button type="submit" name="button" class="btn btn-primary" id="btn-rating">Submit Rating</button>
 
-    </form>
-
+   </form>
  </div>
 </div>
 
