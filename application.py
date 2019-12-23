@@ -65,14 +65,15 @@ def signup():
 def signin():
     return render_template('signin.html')
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
     email = request.form.get("email")
     password = request.form.get("password")
-    if db.execute("SELECT * FROM users WHERE (secondname= :secondname) and (password= :password)", {"secondname":email , "password": password}).rowcount == 0:
-        return redirect('search')
-    else:
+    user = db.execute("SELECT * FROM users WHERE (email= :email) and (password= :password)", {"email":email , "password": password}).fetchone()
+    if user is None:
         return render_template("signin.html")
+    else:
+        return redirect("search")
 
 
 
@@ -131,7 +132,7 @@ def goodreads():
 
     # res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "t052dnowfmqDZ9TdbWqZQ", "isbns": isbn})
     # data = res.json()
-    return render_template("goodreads.html",  )
+    return render_template("goodreads.html" )
 
 
 
