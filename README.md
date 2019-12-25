@@ -32,6 +32,10 @@ Reviews of the book from googread API are also displayed
 Clone this repository.
 Cd to the directory.
 Pip install -r requirements.txt
+SET ENVIRONMENT VARIABLES
+ DATABASE_URL=postgres://khzuzppxigydnz:8e00d3e5896d706441e1ef4ec363fcae3e0c9b25531148729d4fad0dbd0680ea@ec2-54-243-198-191.compute-1.amazonaws.com:5432/d1amt7so9mg61o
+ FLASK_APP=applicatio.py
+ FLASK_DEBUG=1
 
 ## Background
 

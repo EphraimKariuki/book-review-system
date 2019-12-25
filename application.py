@@ -116,6 +116,7 @@ def review(book_id):
     data = res.json()
 
 
+
     user_id = session["user_id"]
     rating = int(request.form.get('rating'))
     apirate = data["books"][0]["average_rating"]
@@ -126,21 +127,21 @@ def review(book_id):
     db.commit()
 
     message = "You have successfully made your review!"
-    return redirect(url_for('goodreads',isbn=isbn))
-    # return render_template("success.html", message=message)
+    return redirect(url_for('goodreads', isbn=isbn))
+
 
 
 @app.route("/success")
 def success():
     return render_template("success.html")
 
-@app.route("/api/<isbn>", methods=["GET","POST"])
+@app.route("/goodreads/<isbn>", methods=["GET","POST"])
 def goodreads(isbn):
-
-
-
-    # res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "t052dnowfmqDZ9TdbWqZQ", "isbns": isbn})
+    # res =  requests.get("https://www.goodreads.com/book/review_counts.json", params={"key":"t052dnowfmqDZ9TdbWqZQ", "isbns": isbn })
     # data = res.json()
+    # average_rating = data["books"][0]["average_rating"]
+    # number_of_rating = data["books"][0]["work_ratings_count"]
+
     return render_template("goodreads.html")
 
 
