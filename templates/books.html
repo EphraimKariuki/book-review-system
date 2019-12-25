@@ -10,24 +10,25 @@
     <h3>The details of the book you are rating</h3>
   </div>
   <div class="card-body">
+    <form class="form-group" action="{{url_for('review', book_id=book.id)}}" method="post">
 
-      <div class="">
+      <div class="form-group">
         <label for="title">Title                            :</label>
-        <output name="title">{{book.title}}</output>
+        <output class="form-control"  name="title">{{book.title}}</output>
       </div>
-      <div class="">
+      <div class="form-group">
         <label for="author">Author                          :</label>
-        <output name="author">{{book.author}}</output>
+        <output class="form-control" name="author">{{book.author}}</output>
       </div>
-      <div class="">
+      <div class="form-group">
         <label for="publicationYear">Year of Publication    :</label>
-        <output name="year">{{book.year}}</output>
+        <output class="form-control" name="year">{{book.year}}</output>
       </div>
-      <div class="">
+      <div class="form-group">
         <label for="isbn">ISBN number                       :</label>
-        <output name="isbn">{{book.isbn}}</output>
+        <output class="form-control" name="isbn">{{book.isbn}}</output>
       </div>
-      <div class="">
+      <div class="form-group">
         <label for="usersReview">Other Users Average Review :</label>
         <output name="usersReview"></output>
       </div>
@@ -41,7 +42,7 @@
       <!-- Book rating section -->
        <h3>Review the above book below</h3>
       <!-- Rating on a scale of 1 to 5. -->
-   <form class="form-group" action="{{url_for('review', book_id=book.id)}}" method="post">
+
      <!-- <div class="form-group">
        <label for="bookId">Book Id:</label>
        <input class="form-control" name="book_id" value="{{book.id}}">

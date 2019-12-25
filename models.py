@@ -39,7 +39,7 @@ class Review(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     book_id = db.Column(db.Integer, db.ForeignKey("books.id"), nullable=False)
     rating  =db.Column(db.Integer, nullable=False)
-    apirate = db.Column(db.Integer, nullable=False)
+    apirate = db.Column(db.String, nullable=False)
     opinion = db.Column(db.String, nullable=False)
 
 

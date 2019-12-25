@@ -65,7 +65,7 @@ def signup():
 def signin():
     return render_template('signin.html')
 
-@app.route("/login", methods=["GET", "POST"])
+@app.route("/login", methods=["POST"])
 def login():
     email = request.form.get("email")
     password = request.form.get("password")
@@ -73,6 +73,7 @@ def login():
     if user is None:
         return render_template("signin.html")
     else:
+        session["user_id"] = user.id
         return redirect("search")
 
 
@@ -108,18 +109,24 @@ def error():
 @app.route("/books/<int:book_id>", methods=["GET", "POST"])
 def review(book_id):
 
-    # Get review from goodreads API.
-    # res =  requests.get("https://www.goodreads.com/book/review_counts.json", params={"key":"t052dnowfmqDZ9TdbWqZQ", "isbn": })
-    user_id = 7
+    #Get review from goodreads API
+    title = request.form.get('title')
+    isbn = db.execute("SELECT isbn FROM books WHERE id= :id", {"id":book_id})
+    res =  requests.get("https://www.goodreads.com/book/review_counts.json", params={"key":"t052dnowfmqDZ9TdbWqZQ", "isbns": isbn})
+    data = res.json()
+
+
+    user_id = session["user_id"]
     rating = int(request.form.get('rating'))
-    apirate = 4
+    apirate = data["books"][0]["average_rating"]
     opinion = request.form.get('comment')
+
 
     db.execute("INSERT INTO reviews (user_id, book_id, rating, apirate, opinion) VALUES(:user_id, :book_id, :rating, :apirate, :opinion)", {"user_id": user_id, "book_id": book_id, "rating": rating, "apirate": apirate, "opinion": opinion})
     db.commit()
 
     message = "You have successfully made your review!"
-    return redirect(url_for('goodreads'))
+    return redirect(url_for('goodreads',isbn=isbn))
     # return render_template("success.html", message=message)
 
 
@@ -127,12 +134,14 @@ def review(book_id):
 def success():
     return render_template("success.html")
 
-@app.route("/goodreads")
-def goodreads():
+@app.route("/api/<isbn>", methods=["GET","POST"])
+def goodreads(isbn):
+
+
 
     # res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "t052dnowfmqDZ9TdbWqZQ", "isbns": isbn})
     # data = res.json()
-    return render_template("goodreads.html" )
+    return render_template("goodreads.html")
 
 
 
