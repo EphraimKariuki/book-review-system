@@ -14,10 +14,10 @@
     <nav class="navbar navbar-light">
 
         <p>BOOK REVIEW</p>
-        <form class="form-inline">
+
           {%block nav%} {%endblock%}
 
-        </form>
+
     </nav>
     <div class="container">
       {% block body %}
@@ -42,7 +42,8 @@
             </div>
             <div class="col-md-6">
               <p>Platform</p>
-              <a href="#">Developer's Api</a>
+              {%block api%}
+              {%endblock%}
 
             </div>
 

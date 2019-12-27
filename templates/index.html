@@ -1,7 +1,11 @@
 {% extends "layout.html" %}
 
 {% block nav %}
-<button  class="btn btn-primary" id="btn-signIn"> Sign In</button>
+<form class="" action="{{url_for('signin')}}" method="post">
+  <button type="submit"  class="btn btn-primary" id="btn-signIn"> Sign In</button>
+
+</form>
+
 {% endblock %}
 
 {% block body%}
@@ -32,5 +36,8 @@
   </div>
 </div>
 
-
 {% endblock %}
+
+{%block api%}
+<a href="{{url_for('api')}}">Developer's Api</a>
+{%endblock%}

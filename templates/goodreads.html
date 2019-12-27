@@ -6,14 +6,14 @@
 
 {%block body%}
 <div class="card" id="goodreadsCard">
-  <h3 class="card-header">Goodraeds Review Data</h3>
+  <h5 class="card-header">Here is a review for the book form the Goodraeds web site</h5>
   <div class="">
-    <label for="title">Title</label>
-    <output name="title"></output>
+    <label for="AverageRating">Average Rating     :</label>
+    <output name="title">{{average_rating}}</output>
   </div>
   <div class="">
-    <label for="AverageRating">Average Rating;</label>
-    <output name="title">{{avgRating}}</output>
+    <label for="AverageRating">Number of reviews :</label>
+    <output name="title">{{number_of_rating}}</output>
   </div>
 
   <div class="card-body">

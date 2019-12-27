@@ -1,7 +1,10 @@
 {% extends "layout.html" %}
 
 {% block nav %}
-<button class="btn btn-primary" id="btn-signIn">Sign Up</button>
+<form class="" action="{{url_for('index')}}" method="post">
+  <button class="btn btn-primary" id="btn-signIn">Sign Up</button>
+</form>
+
 {%endblock%}
 
 {% block body%}
